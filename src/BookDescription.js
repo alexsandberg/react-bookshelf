@@ -3,8 +3,8 @@ import React from 'react'
 const bookDescription = (props) => {
     return (
         <div>
-            <h3>Book title</h3>
-            <p>Book description</p>
+            <div className="book-title">{props.title || 'no title'}</div>
+            <div className="book-authors">{props.authors || 'no authors'}</div>
         </div>
     );
 }
