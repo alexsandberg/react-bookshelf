@@ -3,7 +3,7 @@ import React from 'react'
 import BookShelf from './BookShelf'
 
 const bookShelves = (props) => {
-    const [currentBooks, wantBooks, readBooks] = props;
+    const { currentBooks, wantBooks, readBooks } = props;
 
     return (
         <div>
