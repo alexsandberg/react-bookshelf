@@ -3,19 +3,19 @@ import React from 'react'
 import Book from './Book'
 
 const bookShelf = (props) => {
-    const { shelfName, books } = props;
+    const books = props.books;
+    const shelfName = props.shelfName;
 
     return (
         <div className="bookshelf">
             <h2 className="bookshelf-title">{shelfName}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
-                    <li>
-                        <Book title='To Kill A Mockingbird' authors={['Harper Lee']} imgURL='http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api' />
-                    </li>
-                    <li>
-                        <Book title="Ender's Game" authors={['Orson Scott Card']} imgURL='http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api' />
-                    </li>
+                    {books.map(book => (
+                        <li key={book.id + 'list-item'}>
+                            <Book key={book.id} title={book.title} authors={book.authors} imgURL={book.imageLinks['thumbnail']} />
+                        </li>
+                    ))}
                 </ol>
             </div>
         </div>

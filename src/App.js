@@ -15,11 +15,10 @@ class BooksApp extends React.Component {
         showSearchPage: false
     }
 
-    getAllBooks() {
-        let books = {};
-
+    componentDidMount() {
         BooksAPI.getAll()
             .then(res => {
+                let books = {};
                 res.forEach(book => {
                     if (!books[book.shelf]) {
                         books[book.shelf] = [book];
@@ -28,14 +27,13 @@ class BooksApp extends React.Component {
                         books[book.shelf].push(book);
                     }
                 })
+                return books;
             })
-        return books;
-    }
-
-    componentDidMount() {
-        this.setState(() => ({
-            books: this.getAllBooks()
-        }))
+            .then(books => {
+                this.setState(() => ({
+                    books: books
+                }))
+            })
     }
 
     render() {

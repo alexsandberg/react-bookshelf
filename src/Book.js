@@ -5,6 +5,7 @@ import BookMenu from './BookMenu'
 
 const book = (props) => {
     const { title, authors, imgURL } = props;
+
     return (
         <div className="book">
             <div className="book-top">
