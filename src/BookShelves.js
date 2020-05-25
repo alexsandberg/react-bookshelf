@@ -8,9 +8,9 @@ const bookShelves = (props) => {
     return (
         <div className="list-books-content">
             <div>
-                <BookShelf key='currentShelf' shelfName='Currently Reading' books={currentlyReading} />
-                <BookShelf key='wantShelf' shelfName='Want to Read' books={wantToRead} />
-                <BookShelf key='readShelf' shelfName='Read' books={read} />
+                <BookShelf key='currentShelf' shelfName='currentlyReading' books={currentlyReading} />
+                <BookShelf key='wantShelf' shelfName='wantToRead' books={wantToRead} />
+                <BookShelf key='readShelf' shelfName='read' books={read} />
             </div>
         </div>
     );
