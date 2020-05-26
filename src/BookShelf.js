@@ -6,6 +6,7 @@ const bookShelf = (props) => {
     const books = props.books;
     let shelfName = '';
 
+    // set shelf display name based on shelfName prop
     switch (props.shelfName) {
         case 'currentlyReading':
             shelfName = 'Currently Reading'

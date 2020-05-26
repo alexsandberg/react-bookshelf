@@ -21,6 +21,7 @@ class BooksApp extends React.Component {
     }
 
     getAllBooks() {
+        // call BooksAPI and set state with results
         BooksAPI.getAll()
             .then(res => {
                 let books = {};

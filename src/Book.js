@@ -7,6 +7,7 @@ const book = (props) => {
     const { title, authors, shelf } = props.book;
     const imgURL = props.book.imageLinks ? props.book.imageLinks['thumbnail'] : '';
 
+    // send book and new shelf to handler method
     const changeBookShelf = (newShelf) => {
         props.shelfChange(props.book, newShelf)
     }

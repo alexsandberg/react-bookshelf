@@ -7,6 +7,7 @@ class SearchBookBar extends Component {
     }
 
     handleChange = (event) => {
+        // search database and update state on change
         let val = event.target.value;
         this.props.handleSubmit(event.target.value);
         this.setState(prevState => ({ value: val }));

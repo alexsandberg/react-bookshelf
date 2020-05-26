@@ -7,15 +7,17 @@ import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends Component {
     state = {
-        books: []
+        searchBooks: []
     }
 
     addShelfField(books) {
+        // add shelf field to all books in search results
         if (books) {
             // flatten all books on current shelves into one array
             let shelvedBooks = Object.entries(this.props.books)
                 .reduce((a, b) => (a.concat(b[1])), []);
 
+            // check for match in shelved books, otherwise use 'none'
             return books.map(book1 => {
                 let update = { ...book1, shelf: 'none' };
                 shelvedBooks.forEach(book2 => {
@@ -29,21 +31,22 @@ class SearchBooks extends Component {
     }
 
     handleSubmit = (query) => {
+        // get query from search bar and call API, update state with results
         if (query.length > 0) {
             BooksAPI.search(query)
                 .then(results => {
                     if (results.error) {
-                        this.setState({ books: [] })
+                        this.setState({ searchBooks: [] })
                     } else {
                         let updated = this.addShelfField(results)
-                        this.setState({ books: updated })
+                        this.setState({ searchBooks: updated })
                     }
                 })
                 .catch(e => {
                     console.log('error: ', e)
                 })
         } else {
-            this.setState({ books: [] });
+            this.setState({ searchBooks: [] });
         }
     }
 
