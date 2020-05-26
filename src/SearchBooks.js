@@ -54,7 +54,7 @@ class SearchBooks extends Component {
         return (
             <div className="search-books">
                 <SearchBookBar handleSubmit={this.handleSubmit} />
-                <SearchBookResults books={this.state.books} shelfChange={this.props.shelfChange} />
+                <SearchBookResults books={this.state.searchBooks} shelfChange={this.props.shelfChange} />
             </div>
         )
     }
