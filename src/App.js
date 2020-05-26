@@ -48,7 +48,9 @@ class BooksApp extends React.Component {
             book.shelf = newShelf
 
             // add book to new shelf
-            state.books[newShelf].push(book);
+            if (newShelf !== 'none') {
+                state.books[newShelf].push(book);
+            }
 
             return state
         })
