@@ -5,7 +5,7 @@ import BookMenu from './BookMenu'
 
 const book = (props) => {
     const { title, authors, shelf } = props.book;
-    const imgURL = props.book.imageLinks['thumbnail']
+    const imgURL = props.book.imageLinks ? props.book.imageLinks['thumbnail'] : '';
 
     const changeBookShelf = (newShelf) => {
         props.shelfChange(props.book, shelf, newShelf)
