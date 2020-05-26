@@ -38,6 +38,11 @@ class BooksApp extends React.Component {
     }
 
     shelfChangeHandler = (book, oldShelf, newShelf) => {
+        // make sure book has shelf field
+        if (!book.shelf) {
+            book.shelf = newShelf;
+        }
+
         this.setState(prevState => {
             const state = { ...prevState }
 
