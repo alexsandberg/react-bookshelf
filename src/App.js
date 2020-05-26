@@ -17,6 +17,10 @@ class BooksApp extends React.Component {
     }
 
     componentDidMount() {
+        this.getAllBooks();
+    }
+
+    getAllBooks() {
         BooksAPI.getAll()
             .then(res => {
                 let books = {};
@@ -37,34 +41,11 @@ class BooksApp extends React.Component {
             })
     }
 
-    shelfChangeHandler = (book, oldShelf, newShelf) => {
-        // make sure book has shelf field
-        if (!book.shelf) {
-            book.shelf = newShelf;
-        }
-
-        this.setState(prevState => {
-            const state = { ...prevState }
-
-            if (!oldShelf) {
-                state.books[newShelf].push(book);
-                return state
-            }
-
-            // remove book from current shelf
-            let index = state.books[oldShelf].indexOf(book);
-            state.books[oldShelf].splice(index, 1);
-
-            // change shelf on book
-            book.shelf = newShelf
-
-            // add book to new shelf
-            if (newShelf !== 'none') {
-                state.books[newShelf].push(book);
-            }
-
-            return state
-        })
+    shelfChangeHandler = (book, newShelf) => {
+        // update book in database
+        BooksAPI.update(book, newShelf)
+            .then(res => this.getAllBooks())
+            .catch(error => console.log('update error: ', error));
     }
 
     render() {

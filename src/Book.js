@@ -8,7 +8,7 @@ const book = (props) => {
     const imgURL = props.book.imageLinks ? props.book.imageLinks['thumbnail'] : '';
 
     const changeBookShelf = (newShelf) => {
-        props.shelfChange(props.book, shelf, newShelf)
+        props.shelfChange(props.book, newShelf)
     }
 
 
