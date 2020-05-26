@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 
 class BookMenu extends Component {
-    shelf = this.props.shelf;
-
     state = {
-        value: this.shelf
+        value: ''
+    }
+
+    componentDidMount() {
+        this.setState({ value: this.props.shelf })
     }
 
     handleChange = (event) => {
+        this.props.changeBookShelf(event.target.value);
         this.setState({ value: event.target.value });
     }
 

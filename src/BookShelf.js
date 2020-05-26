@@ -27,7 +27,7 @@ const bookShelf = (props) => {
                 <ol className="books-grid">
                     {books.map(book => (
                         <li key={book.id + 'list-item'}>
-                            <Book key={book.id} title={book.title} authors={book.authors} imgURL={book.imageLinks['thumbnail']} shelf={props.shelfName} />
+                            <Book key={book.id} book={book} shelfChange={props.shelfChange} />
                         </li>
                     ))}
                 </ol>
