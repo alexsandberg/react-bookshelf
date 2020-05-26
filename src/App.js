@@ -41,6 +41,11 @@ class BooksApp extends React.Component {
         this.setState(prevState => {
             const state = { ...prevState }
 
+            if (!oldShelf) {
+                state.books[newShelf].push(book);
+                return state
+            }
+
             // remove book from current shelf
             let index = state.books[oldShelf].indexOf(book);
             state.books[oldShelf].splice(index, 1);
@@ -61,7 +66,7 @@ class BooksApp extends React.Component {
         return (
             <div className="app">
                 {this.state.showSearchPage ? (
-                    <SearchBooks />
+                    <SearchBooks shelfChange={this.shelfChangeHandler} />
                 ) : (
                         <div className="list-books">
                             <div className="list-books-title">

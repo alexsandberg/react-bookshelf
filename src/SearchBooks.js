@@ -1,14 +1,37 @@
-import React from 'react'
+import React, { Component } from 'react'
+
 import SearchBookBar from './SearchBooksBar';
 import SearchBookResults from './SearchBooksResults';
 
-const SearchBooks = (props) => {
-    return (
-        <div className="search-books">
-            <SearchBookBar />
-            <SearchBookResults />
-        </div>
-    )
+import * as BooksAPI from './BooksAPI'
+
+class SearchBooks extends Component {
+    state = {
+        books: []
+    }
+
+    handleSubmit = (query) => {
+        if (query.length > 0) {
+            BooksAPI.search(query)
+                .then(results => {
+                    this.setState({ books: results })
+                })
+                .catch(e => {
+                    console.log('error: ', e)
+                })
+        } else {
+            this.setState({ books: [] });
+        }
+    }
+
+    render() {
+        return (
+            <div className="search-books">
+                <SearchBookBar handleSubmit={this.handleSubmit} />
+                <SearchBookResults books={this.state.books} shelfChange={this.props.shelfChange} />
+            </div>
+        )
+    }
 }
 
 export default SearchBooks;
