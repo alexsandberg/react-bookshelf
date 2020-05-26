@@ -2,6 +2,8 @@
 
 This project utilizes React and React Router to implement a virtual bookshelf, where users can manage the books they've read, are currently reading, and want to read. This is the final assessment project for Udacity's React Fundamentals course, and is based on this [starter repo](https://github.com/udacity/reactnd-project-myreads-starter). 
 
+View MyReads [on Heroku](https://react-bookshelf-udacity.herokuapp.com/).
+
 ## Getting Started
 
 * install all project dependencies with `npm install`
