@@ -10,6 +10,24 @@ class SearchBooks extends Component {
         books: []
     }
 
+    addShelfField(books) {
+        if (books) {
+            // flatten all books on current shelves into one array
+            let shelvedBooks = Object.entries(this.props.books)
+                .reduce((a, b) => (a.concat(b[1])), []);
+
+            return books.map(book1 => {
+                let update = { ...book1, shelf: 'none' };
+                shelvedBooks.forEach(book2 => {
+                    if (book1.id === book2.id) {
+                        update.shelf = book2.shelf;
+                    }
+                });
+                return update;
+            })
+        }
+    }
+
     handleSubmit = (query) => {
         if (query.length > 0) {
             BooksAPI.search(query)
@@ -17,7 +35,8 @@ class SearchBooks extends Component {
                     if (results.error) {
                         this.setState({ books: [] })
                     } else {
-                        this.setState({ books: results })
+                        let updated = this.addShelfField(results)
+                        this.setState({ books: updated })
                     }
                 })
                 .catch(e => {
